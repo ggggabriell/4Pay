@@ -3,6 +3,7 @@ package com.example.appbanco.view.Pagamentos.Cartoes;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Build;
@@ -18,11 +19,13 @@ import com.example.appbanco.model.Cartao;
 import com.example.appbanco.model.Usuario;
 import com.example.appbanco.view.Home.Home;
 import com.example.appbanco.view.Pagamentos.Pix.PixCobrar.PixCobrarFinal;
+import com.example.appbanco.viewModel.GetUserViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,7 +35,9 @@ import java.util.Objects;
 public class CartaoCriarSenha extends AppCompatActivity {
 
     private Usuario usuario;
-    ActivityCartaoCriarSenhaBinding binding;
+    private ActivityCartaoCriarSenhaBinding binding;
+    private GetUserViewModel userViewModel;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,15 @@ public class CartaoCriarSenha extends AppCompatActivity {
         binding = ActivityCartaoCriarSenhaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getUserData();
+        userViewModel = new ViewModelProvider(this).get(GetUserViewModel.class);
+        userViewModel.verifyUserData();
+
+        userViewModel.getUser.observe(this, sucess -> {
+            if (sucess) {
+                usuario = userViewModel.getUser();
+            }
+        });
+
         binding.tvTipoCartao.setText((String) getIntent().getSerializableExtra("tipoCartao"));
 
         binding.ivArrowBack.setOnClickListener(view -> {
@@ -53,23 +66,6 @@ public class CartaoCriarSenha extends AppCompatActivity {
 
     }
 
-    private void getUserData() {
-        DatabaseReference userRef = FirebaseHelper.getDatabaseReference()
-                .child("usuarios")
-                .child(FirebaseHelper.getIdFirebase());
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                usuario = snapshot.getValue(Usuario.class);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     private void criarCartao(Cartao cartao){
 

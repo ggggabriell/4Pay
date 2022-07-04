@@ -59,7 +59,6 @@ public class Home extends AppCompatActivity {
     }
 
     private void replace(Fragment fragment) {
-
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame,fragment);
         transaction.commit();
