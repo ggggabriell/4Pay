@@ -1,13 +1,10 @@
 package com.example.appbanco.viewModel;
 
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.appbanco.R;
 import com.example.appbanco.help.FirebaseHelper;
 import com.example.appbanco.model.Cartao;
 import com.example.appbanco.model.ExtratoModel;
@@ -17,7 +14,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -147,7 +143,7 @@ public class GetUserViewModel extends ViewModel {
         return cartoesList;
     }
 
-    private void getAllExtratos(){
+    private void getAllExtratos() {
         DatabaseReference extratoRef = FirebaseHelper.getDatabaseReference()
                 .child("extratos")
                 .child(FirebaseHelper.getIdFirebase());

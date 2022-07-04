@@ -1,20 +1,18 @@
 package com.example.appbanco.view.Dados_Usuario;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.appbanco.R;
 import com.example.appbanco.help.FirebaseHelper;
-import com.example.appbanco.help.GetMask;
 import com.example.appbanco.model.Endereco;
 import com.example.appbanco.model.Usuario;
-import com.example.appbanco.view.Home.Home;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -60,7 +58,7 @@ public class MeusDadosActivity extends AppCompatActivity {
         ivArrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               finish();
+                finish();
             }
         });
 
@@ -91,7 +89,7 @@ public class MeusDadosActivity extends AppCompatActivity {
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                 usuario = snapshot.getValue(Usuario.class);
+                usuario = snapshot.getValue(Usuario.class);
                 configDados(usuario);
 
             }
@@ -110,13 +108,13 @@ public class MeusDadosActivity extends AppCompatActivity {
         enderecoRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         enderecos = dataSnapshot.getValue(Endereco.class);
                     }
                 }
 
-                if(enderecos != null){
+                if (enderecos != null) {
                     tvEndereco.setText(enderecos.getLogradouro());
                 }
 

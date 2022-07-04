@@ -2,13 +2,12 @@ package com.example.appbanco.view.Home.HomeFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.appbanco.databinding.FragmentConfigsBinding;
 import com.example.appbanco.help.FirebaseHelper;
@@ -35,10 +34,10 @@ public class ConfigsFragment extends Fragment {
 
         userViewModel.verifyUserData();
         userViewModel.getUser.observe(getViewLifecycleOwner(), sucess -> {
-            if(sucess != null){
+            if (sucess != null) {
                 usuario = userViewModel.getUser();
                 binding.tvNomeUser.setText(usuario.getNome());
-                if(usuario.getUrlImagem() != null){
+                if (usuario.getUrlImagem() != null) {
                     Picasso.get().load(usuario.getUrlImagem())
                             .into(binding.ivUserFoto);
                 }
@@ -64,7 +63,6 @@ public class ConfigsFragment extends Fragment {
 
         return view;
     }
-
 
 
 }

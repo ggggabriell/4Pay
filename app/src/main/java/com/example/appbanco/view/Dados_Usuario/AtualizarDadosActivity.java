@@ -1,9 +1,5 @@
 package com.example.appbanco.view.Dados_Usuario;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,9 +17,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.appbanco.R;
 import com.example.appbanco.help.FirebaseHelper;
-import com.example.appbanco.help.GetMask;
 import com.example.appbanco.model.Usuario;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +34,6 @@ import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 import com.squareup.picasso.Picasso;
 import com.thyagoneves.custom_mask_textwatcher.CustomMask;
-
 
 import java.io.IOException;
 import java.util.List;

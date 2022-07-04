@@ -1,11 +1,11 @@
 package com.example.appbanco.view.Home;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.appbanco.R;
 import com.example.appbanco.adapter.VPAdapter;
@@ -35,8 +35,8 @@ public class Seguros extends AppCompatActivity {
 
         viewPagerItemArrayList = new ArrayList<>();
 
-        for (int i = 0; i < images.length; i++){
-            ViewPagerItem viewPagerItem = new ViewPagerItem(images[i],titulo[i],desc[i]);
+        for (int i = 0; i < images.length; i++) {
+            ViewPagerItem viewPagerItem = new ViewPagerItem(images[i], titulo[i], desc[i]);
             viewPagerItemArrayList.add(viewPagerItem);
         }
 
@@ -56,7 +56,7 @@ public class Seguros extends AppCompatActivity {
 
         });
 
-        binding.btnProximo.setOnClickListener(view ->  {
+        binding.btnProximo.setOnClickListener(view -> {
             startActivity(new Intent(Seguros.this, SegurosAtivos.class));
         });
 
